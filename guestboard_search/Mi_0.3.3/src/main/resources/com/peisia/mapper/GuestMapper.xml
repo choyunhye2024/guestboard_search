@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peisia.mapper.GuestMapper">
+
+<select id="getList" resultType="com.peisia.dto.GuestDto">
+    SELECT * FROM tbl_guest limit #{limitIndex}, 5
+</select>
+
+<select id="listSearch" resultType="com.peisia.dto.GuestDto">
+    SELECT * FROM tbl_guest
+    WHERE btext LIKE CONCAT('%', #{search}, '%')
+    LIMIT #{limitIndex}, 5
+</select>
+
+<select id="getCount" resultType="int">
+     SELECT count(*) FROM tbl_guest limit #{limitIndex}, 5
+</select>
+
+<select id = "read" resultType = "com.peisia.dto.GuestDto">
+select * from tbl_guest where bno = #{bno}
+</select>
+
+<delete id="del">
+delete from tbl_guest where bno = #{bno}
+</delete>
+
+<insert id = "write">
+insert into tbl_guest (btext) values (#{btext})
+</insert>
+
+<update id = "modify">
+update tbl_guest 
+set btext = #{btext}
+where bno = #{bno}
+</update>
+</mapper>
